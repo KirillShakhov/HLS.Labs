@@ -9,13 +9,13 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ru.itmo.hls</groupId>
-    <artifactId>attachment-service</artifactId>
+    <artifactId>attachment</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>attachment-service</name>
-    <description>attachment-service</description>
+    <name>attachment</name>
+    <description>attachment</description>
     <properties>
-        <java.version>19</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
