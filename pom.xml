@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ru.itmo.hls</groupId>
-	<artifactId>payment-service</artifactId>
+	<artifactId>payment</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>payment-service</name>
-	<description>payment-service</description>
+	<name>payment</name>
+	<description>payment</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
