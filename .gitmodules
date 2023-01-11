@@ -18,3 +18,11 @@
 	path = Attachment
 	url = http://labvm-42-05.itmo-lab.cosm-lab.science/team-13/hps.lab1.git
 	branch = attachment
+[submodule "Config"]
+	path = Config
+	url = http://labvm-42-05.itmo-lab.cosm-lab.science/team-13/hps.lab1.git
+	branch = config
+[submodule "Eureka"]
+	path = eureka
+	url = http://labvm-42-05.itmo-lab.cosm-lab.science/team-13/hps.lab1.git
+	branch = eureka
