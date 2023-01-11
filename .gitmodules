@@ -1,20 +1,20 @@
-[submodule "authorization"]
-	path = authorization
+[submodule "Authorization"]
+	path = Authorization
 	url = http://labvm-42-05.itmo-lab.cosm-lab.science/team-13/hps.lab1.git
 	branch = authorization
-[submodule "chat"]
-	path = chat
+[submodule "Chat"]
+	path = Chat
 	url = http://labvm-42-05.itmo-lab.cosm-lab.science/team-13/hps.lab1.git
 	branch = chat
-[submodule "core"]
-	path = core
+[submodule "Core"]
+	path = Core
 	url = http://labvm-42-05.itmo-lab.cosm-lab.science/team-13/hps.lab1.git
 	branch = core
-[submodule "payment"]
-	path = payment
+[submodule "Payment"]
+	path = Payment
 	url = http://labvm-42-05.itmo-lab.cosm-lab.science/team-13/hps.lab1.git
 	branch = payment
-[submodule "attachment"]
-	path = attachment
+[submodule "Attachment"]
+	path = Attachment
 	url = http://labvm-42-05.itmo-lab.cosm-lab.science/team-13/hps.lab1.git
 	branch = attachment
