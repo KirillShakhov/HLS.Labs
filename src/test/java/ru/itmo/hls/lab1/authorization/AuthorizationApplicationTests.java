@@ -1,4 +1,4 @@
-package ru.itmo.hps.lab1.authorization;
+package ru.itmo.hls.lab1.authorization;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: ${APPLICATION_NAME:user-service}
+  cloud.config.uri: http://${CONFIG_HOST:localhost}:${CONFIG_PORT:8888}/config
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5433}/${POSTGRES_DB:postgres}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    database-change-log-lock-table: ${MIGRATIONS_TABLE_lOCK:database_migrations_lock}
+    database-change-log-table: ${MIGRATIONS_TABLE:database_migrations}
+jwt:
+  secret-key: ${JWT_SECRET_KEY:qdGkiOiJjYTZiNTI3Ny01MTlkLTQ0NjctODg2Ny1jYTc4N}
+  expire-duration:
+    access: ${JWT_ACCESS_EXPIRES_IN:300}
+    refresh: ${JWT_REFRESH_EXPIRES_IN:604800}
+server:
+  port: ${SERVER_PORT:8181}
+
+spring.jpa.show-sql: true
+
+
+eureka:
+  instance:
+    prefer-ip-address: false
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
