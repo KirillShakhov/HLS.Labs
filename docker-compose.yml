@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  postgres-authorization:
+    container_name: "postgres_datasource_authorization"
+    image: postgres:15.1
+    restart: on-failure
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5433:5432"

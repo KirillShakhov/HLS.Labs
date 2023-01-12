@@ -5,9 +5,12 @@
     <groupId>ru.itmo.hls</groupId>
     <artifactId>hps.project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
     <name>main</name>
     <description>main</description>
+    <modules>
+        <module>commons</module>
+    </modules>
     <properties>
         <java.version>17</java.version>
     </properties>
