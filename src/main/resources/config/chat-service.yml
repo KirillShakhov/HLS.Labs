@@ -1,17 +1,20 @@
 spring:
   application:
-    name: payment-service
+    name: chat-service
   datasource:
-    url: jdbc:postgresql://localhost:5434/payment
+    url: jdbc:postgresql://localhost:5435/chat
     username: postgres
     password: itmoitmo
     driver-class-name: org.postgresql.Driver
   liquibase:
+    url: jdbc:postgresql://localhost:5435/chat
+    user: postgres
+    password: itmoitmo
     database-change-log-lock-table: database_migrations_lock
     database-change-log-table: database_migrations
 
 server:
-  port: 8088
+  port: 8089
 
 spring.jpa.show-sql: true
 
