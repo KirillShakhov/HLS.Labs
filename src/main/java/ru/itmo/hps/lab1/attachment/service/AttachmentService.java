@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import ru.itmo.hls.dto.AttachmentDto;
 import ru.itmo.hps.lab1.attachment.entity.Attachment;
 import ru.itmo.hps.lab1.attachment.entity.AttachmentType;
 import ru.itmo.hps.lab1.attachment.repositories.AttachmentRepository;
@@ -22,23 +23,23 @@ public class AttachmentService {
 
     private final AttachmentRepository attachmentRepository;
 
-    public Mono<Attachment> addAttachment(@NonNull String base64, @NonNull AttachmentType type) {
+    public Mono<AttachmentDto> addAttachment(@NonNull String base64, @NonNull AttachmentType type) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd");
         LocalDate localDate = LocalDate.now();
         return attachmentRepository.save(Attachment.builder()
                 .base64(base64)
                 .type(type)
                 .createDate(dtf.format(localDate))
-                .build()).map(marketInstrumentId -> modelMapper.map(marketInstrumentId, Attachment.class));
+                .build()).map(marketInstrumentId -> modelMapper.map(marketInstrumentId, AttachmentDto.class));
     }
 
-    public Mono<Attachment> getAttachmentById(Long id) {
-        return attachmentRepository.findById(id).map(marketInstrumentId -> modelMapper.map(marketInstrumentId, Attachment.class));
+    public Mono<AttachmentDto> getAttachmentById(Long id) {
+        return attachmentRepository.findById(id).map(marketInstrumentId -> modelMapper.map(marketInstrumentId, AttachmentDto.class));
     }
 
-    public Flux<Attachment> getAttachments(@NonNull Integer pageNumber) {
+    public Flux<AttachmentDto> getAttachments(@NonNull Integer pageNumber) {
         Pageable pageable = PageRequest.of(pageNumber, 50);
         return attachmentRepository.findAllBy(pageable)
-                .map(marketInstrumentId -> modelMapper.map(marketInstrumentId, Attachment.class));
+                .map(marketInstrumentId -> modelMapper.map(marketInstrumentId, AttachmentDto.class));
     }
 }
