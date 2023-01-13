@@ -25,18 +25,14 @@ public class Order {
     private Long id;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id", nullable=false)
     @JsonView(View.Order.class)
-    @ToString.Exclude
-    private User user;
+    private String username;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="payment_id", nullable=false)
     @JsonView(View.Order.class)
-    @ToString.Exclude
-    private Payment payment;
+    private String paymentId;
 
     @Column(name = "delivery_info")
     @JsonView(View.Order.class)

@@ -1,7 +1,6 @@
-package ru.itmo.hps.lab1.core.payload;
+package ru.itmo.hps.lab1.core.dto;
 
 import lombok.Data;
-import ru.itmo.hps.lab1.core.entity.AttachmentType;
 
 import javax.validation.constraints.NotBlank;
 

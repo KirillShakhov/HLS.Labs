@@ -12,8 +12,8 @@ import ru.itmo.hps.lab1.core.entity.Category;
 import ru.itmo.hps.lab1.core.entity.View;
 import ru.itmo.hps.lab1.core.exeptions.AlreadyExistsException;
 import ru.itmo.hps.lab1.core.exeptions.PageNotFoundException;
-import ru.itmo.hps.lab1.core.payload.ApiResponse;
-import ru.itmo.hps.lab1.core.payload.CategoryRequest;
+import ru.itmo.hps.lab1.core.dto.ApiResponse;
+import ru.itmo.hps.lab1.core.dto.CategoryRequest;
 import ru.itmo.hps.lab1.core.services.CategoryDataService;
 
 import javax.validation.Valid;

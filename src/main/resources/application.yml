@@ -1,10 +1,10 @@
 security:
   jwt:
-    header: Authorization
-    prefix: Bearer
-    expiration: '86400'
-    uri: /auth/**
-    secret: JwtSecretKey
+
+
+
+
+
 spring:
   application:
     name: core-service

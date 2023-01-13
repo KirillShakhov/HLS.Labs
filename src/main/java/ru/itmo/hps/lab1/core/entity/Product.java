@@ -30,11 +30,9 @@ public class Product {
     private String name;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id", nullable=false)
     @JsonView(View.Product.class)
-    @ToString.Exclude
-    private User user;
+    private String username;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)

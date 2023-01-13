@@ -9,11 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-import ru.itmo.hps.lab1.core.entity.InstaUserDetails;
 import ru.itmo.hps.lab1.core.entity.View;
 import ru.itmo.hps.lab1.core.exeptions.PageNotFoundException;
-import ru.itmo.hps.lab1.core.payload.ApiResponse;
-import ru.itmo.hps.lab1.core.payload.ProductRequest;
+import ru.itmo.hps.lab1.core.dto.ApiResponse;
+import ru.itmo.hps.lab1.core.dto.ProductRequest;
 import ru.itmo.hps.lab1.core.services.ProductDataService;
 
 import javax.validation.Valid;

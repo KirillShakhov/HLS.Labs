@@ -5,8 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import ru.itmo.hls.dto.PageDto;
 import ru.itmo.hps.lab1.core.entity.Category;
-import ru.itmo.hps.lab1.core.entity.PageEntity;
 import ru.itmo.hps.lab1.core.exeptions.AlreadyExistsException;
 import ru.itmo.hps.lab1.core.exeptions.PageNotFoundException;
 import ru.itmo.hps.lab1.core.repository.CustomizedCategoryCrudRepository;
@@ -26,7 +26,7 @@ public class CategoryDataService {
     }
 
     public List<Category> findAll() {
-        return (List<Category>) customizedCategoryCrudRepository.findAll();
+        return customizedCategoryCrudRepository.findAll();
     }
 
     public void add(Category category) throws AlreadyExistsException {
@@ -42,13 +42,13 @@ public class CategoryDataService {
         return customizedCategoryCrudRepository.findById(id);
     }
 
-    public PageEntity getAllAttachment(@NotNull Integer page) throws PageNotFoundException {
+    public PageDto getAllCategories(@NotNull Integer page) throws PageNotFoundException {
         Pageable pageable = PageRequest.of(page, 50);
         Page<Category> list = customizedCategoryCrudRepository.findAll(pageable);
         if (list.isEmpty()){
             throw new PageNotFoundException(String.format("Page %s not found", page));
         }
-        return PageEntity.builder()
+        return PageDto.builder()
                 .items(list.getContent())
                 .hasMore(list.hasNext())
                 .build();

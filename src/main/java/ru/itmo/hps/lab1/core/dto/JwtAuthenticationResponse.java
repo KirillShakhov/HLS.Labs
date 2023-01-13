@@ -1,4 +1,4 @@
-package ru.itmo.hps.lab1.core.payload;
+package ru.itmo.hps.lab1.core.dto;
 
 import lombok.Data;
 import lombok.NonNull;
