@@ -19,9 +19,9 @@ public class UserController {
     private final UserDataService userDataService;
 
     @PostMapping("/change-role")
-    public ResponseEntity<String> makeUser(@RequestParam String username) {
+    public ResponseEntity<String> changeRole(@RequestParam String username) {
         userDataService.changeRole(username, Role.SELLER);
-        return ResponseEntity.ok("Successfully made a new user");
+        return ResponseEntity.ok("Successfully change user role to seller");
     }
 
     @PostMapping("/add")
