@@ -12,16 +12,17 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/v1/payment")
 public class PaymentController {
     private final PaymentService paymentService;
 
-    @PostMapping("/payments")
+    @PostMapping("/create")
     public ResponseEntity<String> createPayment(@RequestBody Payment payment) {
         paymentService.save(payment);
         return new ResponseEntity<>("Payment was created successfully.", HttpStatus.CREATED);
     }
 
-    @GetMapping("/payments/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<Payment> getPaymentById(@PathVariable("id") long id) {
         Payment payment = paymentService.getById(id);
 
@@ -32,12 +33,12 @@ public class PaymentController {
         }
     }
 
-    @GetMapping("/payments")
+    @GetMapping("/get")
     public ResponseEntity<List<Payment>> getAllPayment() {
         return new ResponseEntity<>(paymentService.findAll(), HttpStatus.OK);
     }
 
-    @PutMapping("/payments/{id}")
+    @PutMapping("/edit/{id}")
     public ResponseEntity<String> updatePayment(@PathVariable("id") long id, @RequestBody Payment payment) {
         Payment _payment = paymentService.getById(id);
 
@@ -53,11 +54,4 @@ public class PaymentController {
             return new ResponseEntity<>("Cannot find Payment with id=" + id, HttpStatus.NOT_FOUND);
         }
     }
-
-
-//    @PostMapping("/signin")
-//    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) throws Exception {
-//        String token = userService.loginUser(loginRequest.getUsername(), loginRequest.getPassword());
-//        return ResponseEntity.ok(new JwtAuthenticationResponse(token));
-//    }
 }
