@@ -49,15 +49,13 @@ public class Product {
     @JoinTable(name = "product_attachments",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "attachment_id"))
-    @ToString.Exclude
-    private Set<Attachment> attachments;
+    private Set<Long> attachments;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "product_comments",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "comment_id"))
-    @ToString.Exclude
-    Set<Message> comments;
+    Set<Long> comments;
 
     @Override
     public int hashCode() {
