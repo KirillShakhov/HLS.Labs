@@ -22,18 +22,18 @@ public class AttachmentService {
 
     private final AttachmentRepository attachmentRepository;
 
-    public Mono<Attachment> addAttachment(@NonNull String title, @NonNull String base64, @NonNull AttachmentType type) {
+    public Mono<Attachment> addAttachment(@NonNull String base64, @NonNull AttachmentType type) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd");
         LocalDate localDate = LocalDate.now();
         return attachmentRepository.save(Attachment.builder()
                 .base64(base64)
                 .type(type)
                 .createDate(dtf.format(localDate))
-                .build());
+                .build()).map(marketInstrumentId -> modelMapper.map(marketInstrumentId, Attachment.class));
     }
 
     public Mono<Attachment> getAttachmentById(Long id) {
-        return attachmentRepository.findById(id);
+        return attachmentRepository.findById(id).map(marketInstrumentId -> modelMapper.map(marketInstrumentId, Attachment.class));
     }
 
     public Flux<Attachment> getAttachments(@NonNull Integer pageNumber) {

@@ -1,34 +1,35 @@
 package ru.itmo.hps.lab1.attachment.entity;
 
-import lombok.*;
-
-import javax.persistence.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.ToString;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+import javax.persistence.GeneratedValue;
 import javax.validation.constraints.NotNull;
 
+
 @Data
-@Entity
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name = "photos", schema = "public")
+@Table(name = "attachment", schema = "public")
 public class Attachment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @GeneratedValue
+    @Column("id")
     private Long id;
 
     @NotNull
-    @Column(name = "base64", nullable = false)
+    @Column("base64")
     private String base64;
 
     @NotNull
-    @Column(name = "type", nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Column("type")
     @ToString.Exclude
     private AttachmentType type;
 
     @NotNull
-    @Column(name = "create_date", nullable = false)
+    @Column("create_date")
     private String createDate;
 
     @Override

@@ -16,8 +16,8 @@ public class AttachmentController {
     private final AttachmentService attachmentService;
 
     @PostMapping("/create")
-    private ResponseEntity<Mono<Attachment>> createAttachment(@RequestParam String title, @RequestParam String base64, @RequestParam AttachmentType type) {
-        return ResponseEntity.ok(attachmentService.addAttachment(title, base64, type));
+    private ResponseEntity<Mono<Attachment>> createAttachment(@RequestParam String base64, @RequestParam AttachmentType type) {
+        return ResponseEntity.ok(attachmentService.addAttachment(base64, type));
     }
 
     @GetMapping("/get")
