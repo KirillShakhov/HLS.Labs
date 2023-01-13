@@ -16,13 +16,13 @@ public class PaymentController {
     private final PaymentService paymentService;
 
     @PostMapping("/payments")
-    public ResponseEntity<String> createpayment(@RequestBody Payment payment) {
+    public ResponseEntity<String> createPayment(@RequestBody Payment payment) {
         paymentService.save(payment);
         return new ResponseEntity<>("Payment was created successfully.", HttpStatus.CREATED);
     }
 
     @GetMapping("/payments/{id}")
-    public ResponseEntity<Payment> getTutorialById(@PathVariable("id") long id) {
+    public ResponseEntity<Payment> getPaymentById(@PathVariable("id") long id) {
         Payment payment = paymentService.getById(id);
 
         if (payment != null) {
