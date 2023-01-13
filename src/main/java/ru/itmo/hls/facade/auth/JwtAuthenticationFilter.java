@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
@@ -27,16 +28,11 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
         String token = tokenFromRequest(request);
-        if (token == null) {
-            chain.doFilter(req, res);
-        } else {
-            if (jwtTokenProvider.validateToken(token)) {
+        if (token != null && jwtTokenProvider.validateToken(token)) {
                 chain.doFilter(req, res);
-            } else {
-                throw new ServletException("Missing or invalid Authorization header");
-            }
+        } else {
+            ((HttpServletResponse) res).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
-
     }
 
     private String tokenFromRequest(@NonNull HttpServletRequest request) {
