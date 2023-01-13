@@ -19,7 +19,7 @@ public class UserController {
     private final UserDataService userDataService;
 
     @PostMapping("/change-role")
-    public ResponseEntity<String> makeUser(@RequestBody String username) {
+    public ResponseEntity<String> makeUser(@RequestParam String username) {
         userDataService.changeRole(username, Role.SELLER);
         return ResponseEntity.ok("Successfully made a new user");
     }
@@ -30,7 +30,7 @@ public class UserController {
         return ResponseEntity.ok("Successfully added a user");
     }
 
-    @GetMapping("/find/{number}")
+    @GetMapping("/find/{username}")
     public ResponseEntity<User> getUser(@PathVariable String username) {
         return ResponseEntity.ok(userDataService.getByUsername(username));
     }

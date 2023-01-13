@@ -15,6 +15,7 @@ import ru.itmo.hls.exception.RefreshTokenException;
 import ru.itmo.hls.exception.UniqueEmailException;
 import ru.itmo.hls.exception.UniquePhoneNumberException;
 import ru.itmo.hls.exception.UniqueUsernameException;
+import ru.itmo.hls.lab1.authorization.exceptions.AlreadyExistsException;
 
 @RestControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -52,6 +53,12 @@ public class AuthControllerExceptionHandler extends ResponseEntityExceptionHandl
     @ExceptionHandler(UniquePhoneNumberException.class)
     public ResponseEntity<Object> handleUniquePhoneNumber(@NonNull RuntimeException exception,
                                                           @NonNull WebRequest request) {
+        return handleExceptionInternal(exception, exception.getMessage(),
+                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler(AlreadyExistsException.class)
+    public ResponseEntity<Object> handleAlreadyExistsException(@NonNull RuntimeException exception, @NonNull WebRequest request) {
         return handleExceptionInternal(exception, exception.getMessage(),
                 new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }

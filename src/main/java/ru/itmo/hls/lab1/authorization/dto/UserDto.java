@@ -28,7 +28,7 @@ public class UserDto {
     @Email(message = "email '${validatedValue}' is not valid")
     String email;
 
-    @NotNull(message = "email may not be null")
+    @NotNull(message = "password may not be null")
     @Size(min = 4, max = 64, message = "password '${validatedValue}' must be between {min} and {max} characters long")
     String password;
 }

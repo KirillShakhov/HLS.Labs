@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.itmo.hls.dto.PageDto;
+import ru.itmo.hls.exception.UniqueUsernameException;
 import ru.itmo.hls.lab1.authorization.dto.UserDto;
 import ru.itmo.hls.lab1.authorization.entity.Role;
 import ru.itmo.hls.lab1.authorization.entity.User;
@@ -30,7 +31,7 @@ public class UserDataService {
         log.info("registering user {}", userDto.getFirstName());
         if(customizedUserCrudRepository.existsByUsername(userDto.getUsername())) {
             log.warn("username {} already exists.", userDto.getUsername());
-            throw new NotFoundException(
+            throw new AlreadyExistsException(
                     String.format("username %s already exists", userDto.getUsername()));
         }
         if(customizedUserCrudRepository.existsByEmail(userDto.getEmail())) {
@@ -50,8 +51,7 @@ public class UserDataService {
     }
 
     public User getByUsername(String username) {
-        return customizedUserCrudRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("user not found"));
+        return customizedUserCrudRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("user not found"));
     }
 
     public PageDto getUsers(@NonNull Integer pageNumber) {
