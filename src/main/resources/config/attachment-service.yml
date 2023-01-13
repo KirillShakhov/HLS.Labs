@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: attachment-service
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5436/attachment
+    username: postgres
+    password: itmoitmo
+    properties:
+      schema: public
+  liquibase:
+    url: jdbc:postgresql://localhost:5436/attachment
+    user: postgres
+    password: itmoitmo
+    database-change-log-lock-table: ${MIGRATIONS_TABLE_lOCK:database_migrations_lock}
+    database-change-log-table: ${MIGRATIONS_TABLE:database_migrations}
+
+server:
+  port: 8090
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
