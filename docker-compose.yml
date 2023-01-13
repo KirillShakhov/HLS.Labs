@@ -31,3 +31,13 @@ services:
       POSTGRES_DB: chat
     ports:
       - "5435:5432"
+  postgres-attachment:
+    container_name: "postgres_datasource_attachment"
+    image: postgres:15.1
+    restart: on-failure
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: itmoitmo
+      POSTGRES_DB: attachment
+    ports:
+      - "5436:5432"
