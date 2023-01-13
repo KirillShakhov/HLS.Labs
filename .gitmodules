@@ -26,3 +26,11 @@
 	path = eureka
 	url = http://labvm-42-05.itmo-lab.cosm-lab.science/team-13/hps.lab1.git
 	branch = eureka
+[submodule "gateway"]
+	path = gateway
+	url = http://labvm-42-05.itmo-lab.cosm-lab.science/team-13/hps.lab1.git
+	branch = gateway
+[submodule "facade"]
+	path = facade
+	url = http://labvm-42-05.itmo-lab.cosm-lab.science/team-13/hps.lab1.git
+	branch = facade
