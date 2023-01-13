@@ -3,13 +3,16 @@ spring:
     name: ${APPLICATION_NAME:user-service}
   cloud.config.uri: http://${CONFIG_HOST:localhost}:${CONFIG_PORT:8888}/config
   datasource:
-    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5433}/${POSTGRES_DB:postgres}
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5433}/${POSTGRES_DB:auth}
     username: ${POSTGRES_USER:postgres}
-    password: ${POSTGRES_PASSWORD:postgres}
+    password: ${POSTGRES_PASSWORD:itmoitmo}
     driver-class-name: org.postgresql.Driver
   liquibase:
     database-change-log-lock-table: ${MIGRATIONS_TABLE_lOCK:database_migrations_lock}
     database-change-log-table: ${MIGRATIONS_TABLE:database_migrations}
+  config:
+    import: "optional:configserver:http://localhost:8888"
+
 jwt:
   secret-key: ${JWT_SECRET_KEY:qdGkiOiJjYTZiNTI3Ny01MTlkLTQ0NjctODg2Ny1jYTc4N}
   expire-duration:
@@ -29,3 +32,8 @@ eureka:
     register-with-eureka: true
     service-url:
       default-zone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
+
+feign:
+  autoconfiguration:
+    jackson:
+      enabled: true
