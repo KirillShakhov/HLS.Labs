@@ -8,6 +8,9 @@ spring:
     properties:
       schema: public
   liquibase:
+    url: jdbc:postgresql://localhost:5435/chat
+    user: postgres
+    password: itmoitmo
     database-change-log-lock-table: ${MIGRATIONS_TABLE_lOCK:database_migrations_lock}
     database-change-log-table: ${MIGRATIONS_TABLE:database_migrations}
   config:
