@@ -1,9 +1,9 @@
-package ru.itmo.hps.lab1.chat.repo;
+package ru.itmo.hps.lab1.chat.repositories;
 
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Flux;
-import ru.itmo.hps.lab1.chat.payload.Message;
+import ru.itmo.hps.lab1.chat.entity.Message;
 
 public interface MessageRepository extends ReactiveCrudRepository<Message, Long> {
 

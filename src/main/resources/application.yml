@@ -2,13 +2,19 @@ spring:
   application:
     name: chat-service
   r2dbc:
-    url: r2dbc:postgresql://localhost:49153/postgres
+    url: r2dbc:postgresql://localhost:5435/chat
     username: postgres
-    password: postgrespw
+    password: itmoitmo
     properties:
       schema: public
+  liquibase:
+    database-change-log-lock-table: ${MIGRATIONS_TABLE_lOCK:database_migrations_lock}
+    database-change-log-table: ${MIGRATIONS_TABLE:database_migrations}
+  config:
+    import: "optional:configserver:http://localhost:8888"
+
 server:
-  port: '8081'
+  port: 8081
 eureka:
   client:
     service-url:
