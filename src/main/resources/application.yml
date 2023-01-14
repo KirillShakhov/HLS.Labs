@@ -10,10 +10,9 @@ spring:
     database-change-log-lock-table: database_migrations_lock
     database-change-log-table: database_migrations
   cloud:
-    config:
     fail-fast: true
   config:
-    import: "optional:configserver:http://localhost:8888/"
+    import: "optional:configserver:http://localhost:8888"
 
 server:
   port: 8087
