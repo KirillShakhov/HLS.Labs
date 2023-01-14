@@ -1,16 +1,15 @@
 package ru.itmo.hps.lab1.chat.repositories;
 
-import org.springframework.data.r2dbc.repository.Query;
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import org.springframework.data.jdbc.repository.query.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 import ru.itmo.hps.lab1.chat.entity.Chat;
 
-@Repository
-public interface ChatRepository extends ReactiveCrudRepository<Chat, Long> {
-    @Query("SELECT * FROM chat c WHERE c.id = :id")
-    Mono<Chat> findById(Long id);
+import java.util.Optional;
 
-    @Query("SELECT EXISTS(SELECT * FROM chat c WHERE c.id = :id)")
-    Mono<Boolean> existsChatById(Long id);
+@Repository
+public interface ChatRepository extends CrudRepository<Chat, Long> {
+    Optional<Chat> findById(Long id);
+    Boolean existsChatById(Long id);
 }

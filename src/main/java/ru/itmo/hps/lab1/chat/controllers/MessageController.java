@@ -9,6 +9,7 @@ import ru.itmo.hps.lab1.chat.entity.Message;
 import ru.itmo.hps.lab1.chat.service.MessageService;
 
 @RestController
+@RequestMapping("/api/v1/messages")
 @RequiredArgsConstructor
 public class MessageController {
     private final MessageService messageService;
@@ -20,6 +21,7 @@ public class MessageController {
 
     @PostMapping(value="/sendMessage")
     private Mono<Boolean> sendMessage(@RequestBody Message message) {
+
         return messageService.addMessage(message);
     }
 }

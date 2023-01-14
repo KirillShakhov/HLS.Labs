@@ -17,16 +17,15 @@ public class MessageService {
     private final ChatRepository chatRepository;
 
     public Flux<Message> getMessagesByChatId(Long id){
-        return messageRepository.getMessageByChatId(id);
+        return Flux.fromIterable(messageRepository.getMessageByChatId(id));
     }
 
     public Mono<Boolean> addMessage(Message message) {
-        return chatRepository.existsChatById(message.getChat_id()).map(result -> {
-            if (result) {
-                messageRepository.save(message).subscribe();
-                return true;
-            }
-            return false;
-        });
+        var result = chatRepository.existsChatById(message.getChat_id());
+        if (result) {
+            messageRepository.save(message);
+            return Mono.just(true);
+        }
+        return Mono.just(false);
     }
 }
