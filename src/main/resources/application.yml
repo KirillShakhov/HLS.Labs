@@ -6,7 +6,9 @@ spring:
       server:
         native:
           search-locations: classpath:/config
-
+eureka:
+  instance:
+    lease-renewal-interval-in-second: 3
 server:
   port: 8888
 
