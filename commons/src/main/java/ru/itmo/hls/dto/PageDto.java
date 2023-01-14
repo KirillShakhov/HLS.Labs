@@ -1,13 +1,13 @@
 package ru.itmo.hls.dto;
 
-import lombok.Builder;
-import lombok.Singular;
-import lombok.Value;
+import lombok.*;
 
 import java.util.List;
 
 
-@Value
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder(toBuilder = true)
 public class PageDto {
     @Singular

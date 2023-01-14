@@ -15,7 +15,7 @@ import java.util.Map;
 @AllArgsConstructor
 public class OrderDto {
     private Long id;
-
+    @NotBlank
     private String username;
 
     @NotBlank

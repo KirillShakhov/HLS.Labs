@@ -1,13 +1,14 @@
 package ru.itmo.hls.dto;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 
 
-@Getter
-@RequiredArgsConstructor
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CredentialsDto {
 
     @NotBlank(message = "Username cannot be empty")
