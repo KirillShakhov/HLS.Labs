@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: ${APPLICATION_NAME:product-service}
+  cloud.config.uri: http://localhost:8888/config
+  datasource:
+    url: jdbc:postgresql://localhost:5437/products
+    username: postgres
+    password: itmoitmo
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    database-change-log-lock-table: database_migrations_lock
+    database-change-log-table: database_migrations
+
+server:
+  port: 8091
+
+spring.jpa.show-sql: true
+
+
+eureka:
+  instance:
+    prefer-ip-address: false
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+
+feign:
+  autoconfiguration:
+    jackson:
+      enabled: true
