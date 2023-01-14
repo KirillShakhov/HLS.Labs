@@ -9,8 +9,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.itmo.hls.dto.AttachmentDto;
 import ru.itmo.hls.entity.AttachmentType;
+import ru.itmo.hls.facade.client.fallback.AttachmentClientFallback;
 
-@ReactiveFeignClient(name = "attachment-service")
+@ReactiveFeignClient(name = "attachment-service", fallback = AttachmentClientFallback.class)
 public interface AttachmentClient {
     @PostMapping("/api/v1/attachment/create")
     Mono<AttachmentDto> createAttachment(@RequestParam String base64, @RequestParam AttachmentType type);

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 import ru.itmo.hls.dto.CredentialsDto;
 import ru.itmo.hls.dto.TokenDto;
+import ru.itmo.hls.dto.UserDto;
 import ru.itmo.hls.facade.client.AuthClient;
 
 @Component
@@ -12,5 +13,10 @@ public class AuthClientFallback implements AuthClient {
     @Override
     public TokenDto login(CredentialsDto credentialsDto) {
         return null;
+    }
+
+    @Override
+    public String registerNewUser(UserDto userDto) {
+        return "";
     }
 }
