@@ -27,7 +27,7 @@ public class ProductController {
     @PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ProductDto addProduct(@RequestHeader("username") String username, @RequestHeader("role") String role, @Valid @RequestBody ProductDto payload) {
-        if (!role.equals("Seller")){
+        if (!role.equals("SELLER")){
             throw new NotFoundException("You are not a seller");
         }
         return productDataService.addProduct(username, payload);
@@ -36,7 +36,7 @@ public class ProductController {
     @GetMapping(value = "/get")
     @ResponseStatus(HttpStatus.OK)
     public PageDto getProducts(@RequestHeader("username") String username, @RequestHeader("role") String role, @RequestParam(value = "page") Integer page)  {
-        if (!role.equals("Seller")){
+        if (!role.equals("SELLER")){
             throw new NotFoundException("You are not a seller");
         }
         return productDataService.getAllProduct(page);

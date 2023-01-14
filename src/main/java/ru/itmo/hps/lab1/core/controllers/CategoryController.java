@@ -21,7 +21,7 @@ public class CategoryController {
     @PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public CategoryDto addCategory(@RequestHeader("username") String username, @RequestHeader("role") String role, @Valid @RequestBody CategoryDto payload) {
-        if (!role.equals("Seller")) {
+        if (!role.equals("SELLER")) {
             throw new NotFoundException("You are not a seller");
         }
         return categoryDataService.add(payload);
@@ -29,8 +29,8 @@ public class CategoryController {
 
     @GetMapping(value = "/get")
     @ResponseStatus(HttpStatus.OK)
-    public PageDto listProduct(@RequestHeader("username") String username, @RequestHeader("role") String role, @RequestParam(value = "page") Integer page) {
-        if (!role.equals("Seller")) {
+    public PageDto listCategory(@RequestHeader("username") String username, @RequestHeader("role") String role, @RequestParam(value = "page") Integer page) {
+        if (!role.equals("SELLER")) {
             throw new NotFoundException("You are not a seller");
         }
         return categoryDataService.getAllCategories(page);
