@@ -1,0 +1,22 @@
+server:
+  application:
+    name: facade-service
+  port: 8100
+
+eureka:
+  instance:
+    prefer-ip-address: false
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
+
+
+jwt:
+  secret: ${JWT_SECRET_KEY:qdGkiOiJjYTZiNTI3Ny01MTlkLTQ0NjctODg2Ny1jYTc4N}
+
+feign:
+  autoconfiguration:
+    jackson:
+      enabled: true
