@@ -1,31 +1,42 @@
 package ru.itmo.hps.lab1.chat.entity;
 
-import lombok.Builder;
-import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+import lombok.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@ToString
+@Entity
 @Builder
-@Table("chats")
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "chats", schema = "public")
 public class Chat {
     @Id
     @GeneratedValue
-    @Column("id")
+    @Column(name = "id")
     private Long id;
 
-    @Column("title")
+    @Column(name = "title")
     private String title;
 
-    @Column("admin")
+    @Column(name = "admin")
     private String adminUser;
 
-    @JoinTable(name = "chat_users")
+    @Column(name = "tag")
+    @ElementCollection(targetClass = String.class)
     private Set<String> users;
+
+    @OneToMany
+    @JoinTable(
+            name="chat_messages",
+            joinColumns = @JoinColumn( name="chat_id"),
+            inverseJoinColumns = @JoinColumn( name="message_id")
+    )
+    private List<Message> messages;
 }

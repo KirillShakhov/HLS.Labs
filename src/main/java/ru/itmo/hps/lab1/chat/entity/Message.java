@@ -1,27 +1,29 @@
 package ru.itmo.hps.lab1.chat.entity;
 
-import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+import lombok.*;
 
-import javax.persistence.GeneratedValue;
-import java.util.Date;
+import javax.persistence.*;
 
-@Data
-@Table("messages")
+@Getter
+@Setter
+@ToString
+@Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "messages", schema = "public")
 public class Message {
     @Id
     @GeneratedValue
-    @Column("id")
-    private Long chat_id;
+    @Column(name = "id")
+    private Long id;
 
-    @Column("username")
+    @Column(name = "username")
     private String username;
 
-    @Column("message")
+    @Column(name = "message")
     private String message;
 
-    @Column("date")
-    private Date date;
+    @Column(name = "date")
+    private String date;
 }

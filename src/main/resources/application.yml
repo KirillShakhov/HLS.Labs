@@ -1,12 +1,11 @@
 spring:
   application:
     name: chat-service
-  r2dbc:
-    url: r2dbc:postgresql://localhost:5435/chat
+  datasource:
+    url: jdbc:postgresql://localhost:5435/chat
     username: postgres
     password: itmoitmo
-    properties:
-      schema: public
+    driver-class-name: org.postgresql.Driver
   liquibase:
     url: jdbc:postgresql://localhost:5435/chat
     user: postgres
