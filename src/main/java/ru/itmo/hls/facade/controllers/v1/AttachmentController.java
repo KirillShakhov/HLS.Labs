@@ -28,6 +28,11 @@ public class AttachmentController {
         return attachmentClient.getAttachment(page);
     }
 
+    @GetMapping("/get/{id}")
+    Mono<AttachmentDto> getAttachment(@PathVariable Long id){
+        return attachmentClient.getAttachmentById(id);
+    }
+
     @GetMapping("/create")
     Mono<AttachmentDto> getAttachmentById(@PathVariable Long id){
         return attachmentClient.getAttachmentById(id);
