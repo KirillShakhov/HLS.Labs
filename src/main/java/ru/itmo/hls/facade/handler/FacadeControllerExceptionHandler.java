@@ -1,5 +1,6 @@
 package ru.itmo.hls.facade.handler;
 
+import feign.FeignException;
 import lombok.NonNull;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -20,6 +21,13 @@ public class FacadeControllerExceptionHandler extends ResponseEntityExceptionHan
 
     @ExceptionHandler(ServletException.class)
     public ResponseEntity<Object> handleAccessToken(@NonNull RuntimeException exception,
+                                                     @NonNull WebRequest request) {
+        return handleExceptionInternal(exception, exception.getMessage(),
+                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+    
+    @ExceptionHandler(FeignException.BadRequest.class)
+    public ResponseEntity<Object> handleBadRequest(@NonNull RuntimeException exception,
                                                      @NonNull WebRequest request) {
         return handleExceptionInternal(exception, exception.getMessage(),
                 new HttpHeaders(), HttpStatus.BAD_REQUEST, request);

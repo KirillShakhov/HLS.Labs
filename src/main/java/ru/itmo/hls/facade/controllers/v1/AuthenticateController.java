@@ -1,10 +1,7 @@
 package ru.itmo.hls.facade.controllers.v1;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 import ru.itmo.hls.dto.CredentialsDto;
 import ru.itmo.hls.dto.TokenDto;
@@ -24,5 +21,20 @@ public class AuthenticateController {
     @PostMapping("/login")
     public TokenDto login(@Valid @RequestBody CredentialsDto credentialsDto) {
         return authClient.login(credentialsDto);
+    }
+
+    @PostMapping("/validateToken")
+    Boolean validateToken(@RequestParam String token){
+        return authClient.validateToken(token);
+    }
+
+    @PostMapping("/token")
+    TokenDto token(@Valid @RequestBody TokenDto tokenDto){
+        return authClient.token(tokenDto);
+    }
+
+    @PostMapping("/refresh")
+    TokenDto refresh(@Valid @RequestBody TokenDto tokenDto){
+        return authClient.refresh(tokenDto);
     }
 }

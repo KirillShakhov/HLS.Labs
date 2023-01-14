@@ -1,11 +1,9 @@
 package ru.itmo.hls.facade.controllers.v1;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.itmo.hls.dto.CredentialsDto;
+import ru.itmo.hls.dto.PageDto;
 import ru.itmo.hls.dto.TokenDto;
 import ru.itmo.hls.dto.UserDto;
 import ru.itmo.hls.facade.client.AuthClient;
@@ -22,5 +20,15 @@ public class UserController {
     @PostMapping("/add")
     String registerNewUser(@Valid @RequestBody UserDto userDto){
         return authClient.registerNewUser(userDto);
+    }
+
+    @PostMapping("/change-role")
+    String changeRole(@RequestAttribute String username){
+        return authClient.changeRole(username);
+    }
+
+    @GetMapping("/page/{number}")
+    PageDto getAllUsers(@PathVariable Integer number){
+        return authClient.getAllUsers(number);
     }
 }
