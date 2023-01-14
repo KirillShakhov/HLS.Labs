@@ -11,12 +11,14 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.UUID;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 
 @Component
 @Slf4j
 @RequiredArgsConstructor
 public class JwtTokenProvider {
+    private static final String AUTHORITIES_KEY = "auth";
 
     private final JwtProperties jwtProperties;
 
@@ -38,9 +40,11 @@ public class JwtTokenProvider {
      * Create a new JWT Token by user details.
      */
     private String generateToken(@NonNull UserPrincipal userPrincipal, long expireDuration) {
+        String authorities = userPrincipal.getAuthorities().stream().map(authority -> authority.getAuthority()).collect(Collectors.joining(","));
         return Jwts.builder()
                 .setId(userPrincipal.getId().toString())
                 .setSubject(userPrincipal.getUsername())
+                .claim(AUTHORITIES_KEY, authorities)
                 .setIssuedAt(Date.from(Instant.now()))
                 .setExpiration(Date.from(Instant.now().plusSeconds(expireDuration)))
                 .signWith(SignatureAlgorithm.HS512, jwtProperties.getSecretKey())
