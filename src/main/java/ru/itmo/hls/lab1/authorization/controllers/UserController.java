@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.itmo.hls.dto.PageDto;
-import ru.itmo.hls.lab1.authorization.dto.UserDto;
+import ru.itmo.hls.dto.UserDto;
 import ru.itmo.hls.lab1.authorization.entity.Role;
 import ru.itmo.hls.lab1.authorization.entity.User;
 import ru.itmo.hls.lab1.authorization.services.UserDataService;
