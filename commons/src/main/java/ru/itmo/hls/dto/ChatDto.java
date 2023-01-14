@@ -1,13 +1,14 @@
 package ru.itmo.hls.dto;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
-@Getter
-@RequiredArgsConstructor
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ChatDto {
     private Long id;
 
@@ -16,4 +17,5 @@ public class ChatDto {
     private String adminUser;
 
     private Set<String> users;
+    private Set<MessageDto> messages;
 }
