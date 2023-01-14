@@ -13,6 +13,7 @@ spring:
     database-change-log-lock-table: database_migrations_lock
     database-change-log-table: database_migrations
 
+
 server:
   port: 8089
 
@@ -22,6 +23,7 @@ spring.jpa.show-sql: true
 eureka:
   instance:
     prefer-ip-address: false
+    lease-renewal-interval-in-second: 3
   client:
     fetch-registry: true
     register-with-eureka: true
