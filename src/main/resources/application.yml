@@ -1,29 +1,34 @@
-security:
-  jwt:
-
-
-
-
-
 spring:
   application:
-    name: core-service
-  main:
-    allow-circular-references: 'true'
+    name: ${APPLICATION_NAME:product-service}
+  cloud.config.uri: http://${CONFIG_HOST:localhost}:${CONFIG_PORT:8888}/config
   datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5437}/${POSTGRES_DB:products}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:itmoitmo}
     driver-class-name: org.postgresql.Driver
-    username: postgres
-    url: jdbc:postgresql://localhost:5432/postgres
-    password: itmoitmo
-  jpa:
-    properties:
-      hibernate:
-        temp:
-          use_jdbc_metadata_defaults: 'false'
-    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+  liquibase:
+    database-change-log-lock-table: ${MIGRATIONS_TABLE_lOCK:database_migrations_lock}
+    database-change-log-table: ${MIGRATIONS_TABLE:database_migrations}
+  config:
+    import: "optional:configserver:http://localhost:8888"
+
 server:
-  port: '8080'
+  port: ${SERVER_PORT:8091}
+
+spring.jpa.show-sql: true
+
+
 eureka:
+  instance:
+    prefer-ip-address: false
   client:
+    fetch-registry: true
+    register-with-eureka: true
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      default-zone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
+
+feign:
+  autoconfiguration:
+    jackson:
+      enabled: true
