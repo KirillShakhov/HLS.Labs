@@ -38,15 +38,7 @@ public class ChatService {
     }
 
     public Flux<Chat> getChat(String username) {
-        var chats = chatRepository.findAll();
-        var list = new ArrayList<Chat>();
-        for (var chat : chats){
-            if (chat.getUsers().contains(username) || chat.getAdminUser().equals(username)){
-                list.add(chat);
-            }
-        }
-        return Flux.fromIterable(list)
-                .filter(chat -> chat.getUsers().contains(username));
+        return Flux.fromIterable(chatRepository.findAll().stream().filter(chat -> chat.getUsers().contains(username) || chat.getAdminUser().equals(username)).toList());
     }
 
     public Mono<Chat> sendById(String username, Long id, String text) {

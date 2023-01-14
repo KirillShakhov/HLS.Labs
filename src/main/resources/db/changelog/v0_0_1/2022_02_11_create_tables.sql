@@ -22,7 +22,7 @@ create table chat_messages
 create table chat_users
 (
     chat_id bigint not null,
-    tag     varchar(255)
+    user_id varchar(255)
 );
 
 CREATE SEQUENCE hibernate_sequence;

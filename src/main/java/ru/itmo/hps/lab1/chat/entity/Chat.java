@@ -1,6 +1,9 @@
 package ru.itmo.hps.lab1.chat.entity;
 
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -28,11 +31,11 @@ public class Chat {
     @Column(name = "admin")
     private String adminUser;
 
-    @Column(name = "tag")
-    @ElementCollection(targetClass = String.class)
+    @Column(name = "user_id")
+    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     private Set<String> users;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name="chat_messages",
             joinColumns = @JoinColumn( name="chat_id"),

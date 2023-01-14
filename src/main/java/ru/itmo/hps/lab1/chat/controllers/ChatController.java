@@ -28,7 +28,7 @@ public class ChatController {
         return chatService.getChat(username).flatMap(chat -> Mono.just(modelMapper.map(chat, ChatDto.class)));
     }
 
-    @PostMapping("/get/{id}")
+    @GetMapping("/get/{id}")
     private Mono<ChatDto> getChatsById(@RequestHeader("username") String username, @PathVariable Long id) {
         return chatService.getChatById(username, id).flatMap(chat -> Mono.just(modelMapper.map(chat, ChatDto.class)));
     }
