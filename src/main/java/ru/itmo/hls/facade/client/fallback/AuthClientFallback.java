@@ -11,6 +11,6 @@ import ru.itmo.hls.facade.client.AuthClient;
 public class AuthClientFallback implements AuthClient {
     @Override
     public Mono<TokenDto> login(CredentialsDto credentialsDto) {
-        return Mono.empty();
+        return null;
     }
 }

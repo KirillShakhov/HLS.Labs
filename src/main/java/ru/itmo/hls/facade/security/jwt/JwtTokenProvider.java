@@ -1,4 +1,4 @@
-package ru.itmo.hls.facade.auth;
+package ru.itmo.hls.facade.security.jwt;
 
 import io.jsonwebtoken.*;
 import lombok.NonNull;
@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import java.util.function.Function;
 
 
 @Component
@@ -34,8 +36,16 @@ public class JwtTokenProvider {
         return false;
     }
 
-    public void extractAllClaims(@NonNull String token) {
-        Jwts.parser()
+    public String extractUsername(@NonNull String token) {
+        return extractClaim(token, Claims::getSubject);
+    }
+
+    public <T> T extractClaim(@NonNull String token, Function<Claims, T> claimResolver) {
+        return claimResolver.apply(extractAllClaims(token));
+    }
+
+    public Claims extractAllClaims(@NonNull String token) {
+        return Jwts.parser()
                 .setSigningKey(jwtSecret)
                 .parseClaimsJws(token)
                 .getBody();

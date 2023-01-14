@@ -14,8 +14,8 @@ import ru.itmo.hls.facade.client.fallback.AuthClientFallback;
 
 import javax.validation.constraints.NotNull;
 
-@ReactiveFeignClient(name = "auth-service", fallback = AuthClientFallback.class)
+@ReactiveFeignClient(name = "auth-service")
 public interface AuthClient {
-    @PostMapping("/login")
+    @PostMapping("/api/v1/auth/login")
     Mono<TokenDto> login(@NotNull CredentialsDto credentialsDto);
 }
