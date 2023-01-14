@@ -41,3 +41,13 @@ services:
       POSTGRES_DB: attachment
     ports:
       - "5436:5432"
+  postgres-products:
+    container_name: "postgres_datasource_products"
+    image: postgres:15.1
+    restart: on-failure
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: itmoitmo
+      POSTGRES_DB: products
+    ports:
+      - "5437:5432"
