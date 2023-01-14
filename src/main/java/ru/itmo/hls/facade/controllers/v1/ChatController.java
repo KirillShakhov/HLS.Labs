@@ -21,17 +21,17 @@ public class ChatController {
     }
 
     @GetMapping("/get")
-    Flux<ChatDto> getChats(){
-        return chatClient.getChats();
+    Flux<ChatDto> getChats(@RequestAttribute("username") String username){
+        return chatClient.getChats(username);
     }
 
     @GetMapping("/get/{id}")
-    Mono<ChatDto> getChatsById(@PathVariable Long id){
-        return chatClient.getChatsById(id);
+    Mono<ChatDto> getChatsById(@RequestAttribute("username") String username, @PathVariable Long id){
+        return chatClient.getChatsById(username, id);
     }
 
     @PostMapping("/send/{id}")
-    Mono<ChatDto> sendById(@PathVariable Long id){
-        return chatClient.sendById(id);
+    Mono<ChatDto> sendById(@RequestAttribute("username") String username, @PathVariable Long id, @RequestParam String text){
+        return chatClient.sendById(username, id, text);
     }
 }
