@@ -43,7 +43,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     final FilterChain filterChain) throws ServletException, IOException {
         var token = jwtTokenUtils.tokenFromRequest(request);
 
-        if (StringUtils.hasText(token) && jwtTokenProvider.validateToken(token)) {
+        if (request.getAttribute("username") == null && StringUtils.hasText(token) && jwtTokenProvider.validateToken(token)) {
             final var username = jwtTokenProvider.extractUsername(token);
             Claims claims = jwtTokenProvider.extractAllClaims(token);
             var role = (String) claims.get(AUTHORITIES_KEY);
@@ -51,6 +51,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     username, null, Collections.singletonList(new SimpleGrantedAuthority(role)));
             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authentication);
+            request.setAttribute("username", username);
+            request.setAttribute("role", role);
         }
         filterChain.doFilter(request, response);
     }

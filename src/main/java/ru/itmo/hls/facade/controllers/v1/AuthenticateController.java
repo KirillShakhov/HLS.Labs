@@ -21,7 +21,7 @@ public class AuthenticateController {
     private final AuthClient authClient;
 
     @PostMapping("/login")
-    public Mono<TokenDto> login(@Valid @RequestBody CredentialsDto credentialsDto) {
+    public TokenDto login(@Valid @RequestBody CredentialsDto credentialsDto) {
         return authClient.login(credentialsDto);
     }
 }

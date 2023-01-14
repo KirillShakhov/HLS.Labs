@@ -10,7 +10,7 @@ import ru.itmo.hls.facade.client.AuthClient;
 @Component
 public class AuthClientFallback implements AuthClient {
     @Override
-    public Mono<TokenDto> login(CredentialsDto credentialsDto) {
+    public TokenDto login(CredentialsDto credentialsDto) {
         return null;
     }
 }
